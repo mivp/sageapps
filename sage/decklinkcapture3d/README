@@ -1,0 +1,7 @@
+capture:
+	./Capture -m 9 -p 0 -f toto.raw -a toto.pcm -c 2 -s 16 -n 100
+
+playback:
+
+	mplayer toto.raw -demuxer rawvideo -rawvideo w=1920:h=1080:uyvy -audiofile toto.pcm -audio-demuxer 20 -rawaudio rate=48000
+

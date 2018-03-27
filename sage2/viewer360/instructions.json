@@ -1,0 +1,17 @@
+{
+	"main_script": "viewer360.js",
+	"icon": "viewer360.png",
+	"width": 800,
+	"height": 500,
+	"animation": true,
+	"resize": "free",
+	"dependencies": [
+		"scripts/three.min.js"
+	],
+	"title": "360 degree viewer",
+	"version": "1.0.0",
+	"description": "A 360 degree viewer (test photo: Jon Ragnarsson, test video: Valiant360)",
+	"keywords": [ "three", "3d", "360 degree", "video" ],
+	"author": "Toan Nguyen <ntoand@gmail.com>",
+	"license": "SAGE2-Software-License"
+}
