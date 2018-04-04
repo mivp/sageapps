@@ -24,7 +24,7 @@ enum CameraType {
 };
 
 enum CameraDirection {
-	UP, DOWN, LEFT, RIGHT, FORWARD, BACK
+	CAM_UP, CAM_DOWN, CAM_LEFT, CAM_RIGHT, CAM_FORWARD, CAM_BACK
 };
 
 class Camera {

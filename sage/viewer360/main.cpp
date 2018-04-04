@@ -4,6 +4,8 @@
 #include "Renderer.h"
 #include "VideoDecode.h"
 
+#include "libsage.h"
+
 #include <sstream>
 #include <iostream>
 #include <vector>
@@ -22,12 +24,13 @@ float last_time=0, current_time =0;
 //delta time
 float dt = 0;
 
-#define WIDTH 1024
+#define WIDTH 1920//1024
 #define HEIGHT 768
 
 Camera* camera = NULL;
 Renderer* renderer = NULL;
 VideoDecode* decoder = NULL;
+sail *sageInf;
 
 //camera / mouse
 bool keys[1024];
@@ -106,6 +109,8 @@ void init_resources() {
     decoder->load("testdata/ayutthaya_4k.mp4");
 
     renderer = new Renderer(true, decoder->getWidth(), decoder->getHeight());
+
+    sageInf = createSAIL("viewer360", WIDTH, HEIGHT, PIXFMT_888, NULL);
 }
 
 void free_resources()
@@ -114,22 +119,23 @@ void free_resources()
         delete camera;
     if(renderer)
         delete renderer;
+    deleteSAIL(sageInf);
 }
 
 void doMovement() {
     // Camera controls
     if(keys[GLFW_KEY_W])
-        camera->Move(FORWARD);
+        camera->Move(CAM_FORWARD);
     if(keys[GLFW_KEY_S])
-        camera->Move(BACK);
+        camera->Move(CAM_BACK);
     if(keys[GLFW_KEY_A])
-        camera->Move(LEFT);
+        camera->Move(CAM_LEFT);
     if(keys[GLFW_KEY_D])
-        camera->Move(RIGHT);
+        camera->Move(CAM_RIGHT);
     if(keys[GLFW_KEY_Q])
-        camera->Move(DOWN);
+        camera->Move(CAM_DOWN);
     if(keys[GLFW_KEY_E])
-        camera->Move(UP);
+        camera->Move(CAM_UP);
 
     if(keys[GLFW_KEY_I]) {
         cout << "pos: " << camera->camera_position[0] << ", " << camera->camera_position[1] << ", " << camera->camera_position[2] << endl;
@@ -187,6 +193,10 @@ void mainLoop()
         bool hasFrame = false;
         decoder->readFrame(hasFrame);
         renderer->render(MV, P);
+
+        GLubyte *rgbBuffer = nextBuffer(sageInf);
+        glReadPixels(0, 0, WIDTH, HEIGHT, GL_RGB, GL_UNSIGNED_BYTE, rgbBuffer);
+        swapBuffer(sageInf);
 
         glfwSwapBuffers(window);
 

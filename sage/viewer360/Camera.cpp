@@ -90,22 +90,22 @@ void Camera::SetClipping(double near_clip_distance, double far_clip_distance) {
 void Camera::Move(CameraDirection dir) {
 	if (camera_mode == FREE) {
 		switch (dir) {
-			case UP:
+			case CAM_UP:
 				camera_position_delta += camera_up * camera_scale;
 				break;
-			case DOWN:
+			case CAM_DOWN:
 				camera_position_delta -= camera_up * camera_scale;
 				break;
-			case LEFT:
+			case CAM_LEFT:
 				camera_position_delta -= glm::cross(camera_direction, camera_up) * camera_scale;
 				break;
-			case RIGHT:
+			case CAM_RIGHT:
 				camera_position_delta += glm::cross(camera_direction, camera_up) * camera_scale;
 				break;
-			case FORWARD:
+			case CAM_FORWARD:
 				camera_position_delta += camera_direction * camera_scale;
 				break;
-			case BACK:
+			case CAM_BACK:
 				camera_position_delta -= camera_direction * camera_scale;
 				break;
 		}

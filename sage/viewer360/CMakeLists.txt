@@ -45,6 +45,11 @@ include_directories(
 	external/glew-1.9.0/include/
 	../
 	.
+	/home/toand/git/sage-dev/include
+)
+
+link_directories(
+	/home/toand/git/sage-dev/lib
 )
 
 set(ALL_LIBS
@@ -53,6 +58,7 @@ set(ALL_LIBS
 	GLEW_190
     #${GLEW_LIBRARIES}
     ${FFMPEG_LIBRARIES}
+    -lsail
 )
 
 add_definitions(
