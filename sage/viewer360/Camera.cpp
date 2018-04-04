@@ -1,5 +1,5 @@
 //camera.cpp
-#include "camera.h"
+#include "Camera.h"
 using namespace std;
 
 Camera::Camera(): camera_mode(FREE), move_camera(false),

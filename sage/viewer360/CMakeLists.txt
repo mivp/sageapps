@@ -53,7 +53,6 @@ set(ALL_LIBS
 	GLEW_190
     #${GLEW_LIBRARIES}
     ${FFMPEG_LIBRARIES}
-    /usr/local/Cellar/ffmpeg@2.8/2.8.13_2/lib/libswscale.dylib
 )
 
 add_definitions(

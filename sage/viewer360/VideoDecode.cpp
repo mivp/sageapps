@@ -112,7 +112,7 @@ namespace viewer360 {
 
                 // others
                 m_frame = av_frame_alloc();
-                memset(m_inbuf + H264_INBUF_SIZE, 0, AV_INPUT_BUFFER_PADDING_SIZE);
+                memset(m_inbuf + H264_INBUF_SIZE, 0, FF_INPUT_BUFFER_PADDING_SIZE); //AV_INPUT_BUFFER_PADDING_SIZE);
                 m_fp = fopen(m_filename.c_str(), "rb");
                 if(!m_fp)
                     showError("cannot open file to read");
